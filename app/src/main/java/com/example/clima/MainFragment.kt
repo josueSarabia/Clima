@@ -38,22 +38,15 @@ class MainFragment : Fragment(), View.OnClickListener, UserAdapter.onListInterac
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        Log.d("errorrrrrrrrrrrrrrr", "0")
         val view = inflater.inflate(R.layout.fragment_main, container, false)
 
-        Log.d("errorrrrrrrrrrrrrrr", "1")
 
         viewModel = ViewModelProvider(this).get(RandomUserViewModel::class.java)
-        Log.d("errorrrrrrrrrrrrrrr", "2")
         viewModel.addUser()
-        Log.d("errorrrrrrrrrrrrrrr", "3")
         adapter = UserAdapter(users,this)
-        Log.d("errorrrrrrrrrrrrrrr", "4")
         viewModel.getUsers().observe(viewLifecycleOwner, Observer{ users ->
             run{
-                Log.d("errorrrrrrrrrrrrrrr", "5")
                 userList = users as MutableList<RandomUser>
-                Log.d("error", "6")
                 Log.d("VideoVolleyLifeData", " userList size " + userList.size)
                 for( ruser in userList){
                     var user = User(ruser.name?.title, ruser.name?.first, ruser.name?.last,ruser.gender )
@@ -63,11 +56,9 @@ class MainFragment : Fragment(), View.OnClickListener, UserAdapter.onListInterac
                 adapter!!.updateData()
             }
         })
-        Log.d("errorrrrrrrrrrrrrrr", "7")
         view.list.layoutManager = LinearLayoutManager(context)
         view.list.adapter = adapter
 
-        Log.d("errorrrrrrrrrrrrrrr", "return")
         return view
     }
 
