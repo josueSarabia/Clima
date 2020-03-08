@@ -63,13 +63,12 @@ class RandomUserDao private constructor( var context: Context){
             //poner id tambien
             val cityObject = jsonArrayResults.getJSONObject(i)
             val name = cityObject.getString("name")
-            val weatherObject = cityObject.getJSONArray("weather")
-            // val mainWeatherObject = weatherObject.getString("main")
-            //val descriptionWeatherObject = weatherArray.getString("description")
+            val weatherObject = cityObject.getJSONArray("weather").getJSONObject(0)
+            val descriptionWeatherObject = weatherObject.getString("description")
             val main =  cityObject.getJSONObject("main")
             val minTemp = main.getString("temp_min")
             val maxTemp = main.getString("temp_max")
-            Log.d("JSONParsing", name + " " + minTemp + weatherObject) // mejor el desc probando es el mainWeatherObject
+            Log.d("JSONParsing", name + " " + minTemp + weatherObject + descriptionWeatherObject ) // mejor el desc probando es el mainWeatherObject
             // crear un obejto RandomUser OBVIAMENTE cambiar la clase RandomUser
             // userList.add(user)
 
