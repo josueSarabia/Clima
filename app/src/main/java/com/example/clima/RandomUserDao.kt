@@ -43,7 +43,7 @@ class RandomUserDao private constructor( var context: Context){
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
             Response.Listener { response ->
-                parseObject(response)
+                parseObjectG(response)
             },
             Response.ErrorListener{error ->
                 Log.d("WebRequestTest", "that didn't work! " + error.message)
@@ -55,27 +55,19 @@ class RandomUserDao private constructor( var context: Context){
 
 
     // obtener json manualmente
-    fun parseObject(response: JSONObject){
-        val jsonArrayResults: JSONArray = response.getJSONArray("list")
-        val size: Int = jsonArrayResults.length()
-        val i: Int = 0
-        for (i in 0..size - 1){
-            //poner id tambien
-            val cityObject = jsonArrayResults.getJSONObject(i)
-            val name = cityObject.getString("name")
-            val weatherObject = cityObject.getJSONArray("weather").getJSONObject(0)
-            val descriptionWeatherObject = weatherObject.getString("description")
-            val main =  cityObject.getJSONObject("main")
-            val minTemp = main.getString("temp_min")
-            val maxTemp = main.getString("temp_max")
-            Log.d("JSONParsing", name + " " + minTemp + weatherObject + descriptionWeatherObject ) // mejor el desc probando es el mainWeatherObject
-            // crear un obejto RandomUser OBVIAMENTE cambiar la clase RandomUser
-            // userList.add(user)
 
-            // Barranquilla 26{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}
+
+    private fun parseObjectG(response: JSONObject) {
+        var list = RandomUser.getUser(response)
+        val i: Int = 0
+        val size: Int = list.size
+        for (i in 0 until size) {
+            val user = list[i]
+            userList.add(user)
         }
-        // users.value = userList
+        users.value = userList
     }
+
 
 
 }

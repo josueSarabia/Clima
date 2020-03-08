@@ -49,7 +49,7 @@ class MainFragment : Fragment(), View.OnClickListener, UserAdapter.onListInterac
                 userList = users as MutableList<RandomUser>
                 Log.d("VideoVolleyLifeData", " userList size " + userList.size)
                 for( ruser in userList){
-                    var user = User(ruser.name?.title, ruser.name?.first, ruser.name?.last,ruser.gender )
+                    var user = User(ruser.name , ruser.Description, ruser.minTemp,ruser.maxTemp )
                     this.users.add(user)
                 }
 
