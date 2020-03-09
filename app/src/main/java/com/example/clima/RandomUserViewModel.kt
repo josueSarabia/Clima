@@ -18,4 +18,12 @@ class RandomUserViewModel (applicaton: Application): AndroidViewModel(applicaton
     fun getUsers() : MutableLiveData<List<RandomUser>>{
         return randomUserDao.getUsers()
     }
+
+    fun addDays(city: String?){
+        randomUserDao.addDays(city)
+    }
+
+    fun getDays() : MutableLiveData<List<RandomUser>>{
+        return randomUserDao.getDays()
+    }
 }

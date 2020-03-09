@@ -41,11 +41,34 @@ class RandomUser {
                 city.maxTemp = maxTemp
                 array.add(city)
 
-                Log.d(
-                    "JSONParsing",
-                    name + " " + minTemp + weatherObject + descriptionWeatherObject
-                ) // mejor el desc probando es el mainWeatherObject
+                Log.d("JSONParsing", name + " " + minTemp + weatherObject + descriptionWeatherObject)
 
+
+            }
+            return array
+        }
+
+
+        fun getDay(response: JSONObject): ArrayList<RandomUser> {
+            val jsonArrayResults: JSONArray = response.getJSONArray("list")
+            val size: Int = jsonArrayResults.length()
+            var i: Int = 0
+            val array = ArrayList<RandomUser>()
+            while (i < size) {
+                val cityObject = jsonArrayResults.getJSONObject(i)
+                val weatherObject = cityObject.getJSONArray("weather").getJSONObject(0)
+                val descriptionWeatherObject = weatherObject.getString("description")
+                val main = cityObject.getJSONObject("main")
+                val minTemp = main.getString("temp_min")
+                val maxTemp = main.getString("temp_max")
+                val city = RandomUser()
+                city.Description = descriptionWeatherObject
+                city.minTemp = minTemp
+                city.maxTemp = maxTemp
+                array.add(city)
+
+                Log.d("JSONParsingDays", " " + minTemp + weatherObject + descriptionWeatherObject)
+                i = i + 7
 
             }
             return array

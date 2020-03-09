@@ -31,6 +31,7 @@ class MainFragment : Fragment(), View.OnClickListener, UserAdapter.onListInterac
     val users = mutableListOf<User>()
     private  var adapter: UserAdapter? = null
     var count : Int = 0
+    var sw: Int = 0
 
 
     override fun onCreateView(
@@ -41,9 +42,22 @@ class MainFragment : Fragment(), View.OnClickListener, UserAdapter.onListInterac
         val view = inflater.inflate(R.layout.fragment_main, container, false)
 
 
+
         viewModel = ViewModelProvider(this).get(RandomUserViewModel::class.java)
         viewModel.addUser()
+        if(users.isEmpty()){
+            getUsersMethod()
+        }
         adapter = UserAdapter(users,this)
+
+
+        view.list.layoutManager = LinearLayoutManager(context)
+        view.list.adapter = adapter
+
+        return view
+    }
+
+    fun getUsersMethod(){
         viewModel.getUsers().observe(viewLifecycleOwner, Observer{ users ->
             run{
                 userList = users as MutableList<RandomUser>
@@ -56,10 +70,6 @@ class MainFragment : Fragment(), View.OnClickListener, UserAdapter.onListInterac
                 adapter!!.updateData()
             }
         })
-        view.list.layoutManager = LinearLayoutManager(context)
-        view.list.adapter = adapter
-
-        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
