@@ -45,17 +45,22 @@ class PersonalFragment : Fragment(), View.OnClickListener, UserAdapter.onListInt
             run{
                 daysList = days as MutableList<RandomUser>
                 Log.d("VideoVolleyLifeDataDays", " userList size " + daysList.size)
-                for( ruser in daysList){
-
-                    Log.d("days", " " + daysParam + ruser.Description + ruser.minTemp + ruser.maxTemp )
-
-                    // creo que aqui se debe inicar el data binding
-                    // nose si se usa
-                    var user = User( daysParam , ruser.Description, ruser.minTemp,ruser.maxTemp )
-                    this.days.add(user)
 
 
-                }
+
+
+                nBinding.user=daysList[0];
+                nBinding.user2=daysList[1];
+                nBinding.user3=daysList[2];
+                nBinding.user4=daysList[3];
+                nBinding.user5=daysList[4];
+                nBinding.user6=daysList[5];
+
+
+
+
+
+
 
                 // nose si se usa
                 adapter!!.updateData()
@@ -70,7 +75,7 @@ class PersonalFragment : Fragment(), View.OnClickListener, UserAdapter.onListInt
         //view.findViewById<TextView>(R.id.textViewHobby).text = user.hobby
         //view.findViewById<TextView>(R.id.textViewNombre).text = arguments!!.getString("nombre")!!
         this.user = arguments!!.getParcelable("data")!!
-        nBinding.user = this.user
+
         viewModel = ViewModelProvider(this).get(RandomUserViewModel::class.java)
         viewModel.addDays(user.name)
         if(days.isEmpty()){
