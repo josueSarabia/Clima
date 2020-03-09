@@ -54,21 +54,31 @@ class RandomUser {
             val size: Int = jsonArrayResults.length()
             var i: Int = 0
             val array = ArrayList<RandomUser>()
+            var antDay = ""
+            var name: String
             while (i < size) {
                 val cityObject = jsonArrayResults.getJSONObject(i)
-                val weatherObject = cityObject.getJSONArray("weather").getJSONObject(0)
-                val descriptionWeatherObject = weatherObject.getString("description")
-                val main = cityObject.getJSONObject("main")
-                val minTemp = main.getString("temp_min")
-                val maxTemp = main.getString("temp_max")
-                val city = RandomUser()
-                city.Description = descriptionWeatherObject
-                city.minTemp = minTemp
-                city.maxTemp = maxTemp
-                array.add(city)
+                var dayNumber = cityObject.getString("dt_txt")
+                var dayNumberList: List<String> = dayNumber.split(" ")
+                if(dayNumberList[0] != antDay){
+                    antDay = dayNumberList[0]
+                    var dayNumberChangeformat: List<String> = dayNumberList[0].split("-")
+                    name = dayNumberChangeformat[2] + "-" + dayNumberChangeformat[1]
 
-                Log.d("JSONParsingDays", " " + minTemp + weatherObject + descriptionWeatherObject)
-                i = i + 7
+                    val weatherObject = cityObject.getJSONArray("weather").getJSONObject(0)
+                    val descriptionWeatherObject = weatherObject.getString("description")
+                    val main = cityObject.getJSONObject("main")
+                    val minTemp = main.getString("temp_min")
+                    val maxTemp = main.getString("temp_max")
+                    val city = RandomUser()
+                    city.name = name
+                    city.Description = descriptionWeatherObject
+                    city.minTemp = minTemp
+                    city.maxTemp = maxTemp
+                    array.add(city)
+                    Log.d("JSONParsingDays", " " + minTemp + weatherObject + descriptionWeatherObject)
+                }
+                i = i + 1
 
             }
             return array

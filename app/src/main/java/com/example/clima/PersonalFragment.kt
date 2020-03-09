@@ -75,7 +75,7 @@ class PersonalFragment : Fragment(), View.OnClickListener, UserAdapter.onListInt
         //view.findViewById<TextView>(R.id.textViewHobby).text = user.hobby
         //view.findViewById<TextView>(R.id.textViewNombre).text = arguments!!.getString("nombre")!!
         this.user = arguments!!.getParcelable("data")!!
-
+        nBinding.nameCity = "Clima " + user.name
         viewModel = ViewModelProvider(this).get(RandomUserViewModel::class.java)
         viewModel.addDays(user.name)
         if(days.isEmpty()){

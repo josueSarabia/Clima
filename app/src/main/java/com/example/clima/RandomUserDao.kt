@@ -46,7 +46,7 @@ class RandomUserDao private constructor( var context: Context){
 
     fun getJsonObjectRequestDays(city: String?) : JsonObjectRequest{
 
-        val url = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +"&appid=96e265d7571b193021470794bc491435"
+        val url = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +"&units=metric&appid=96e265d7571b193021470794bc491435"
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
