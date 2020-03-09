@@ -5,9 +5,9 @@ import android.widget.HeaderViewListAdapter
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class User (val title: String?,
-            val first: String?,
-            val last: String?,
-            val gender: String?
+class User (val name: String?,
+            val des: String?,
+            val mint: String?,
+            val maxt: String?
 ) : Parcelable {
 }

@@ -74,7 +74,7 @@ class MainFragment : Fragment(), View.OnClickListener, UserAdapter.onListInterac
     }
 
     override fun onListItemInteraction(item: User?) {
-        Log.d("KRecyclerView", "onListItemInteraction " + item!!.first)
+
         val bundle = bundleOf("data" to item)
         navController!!.navigate(R.id.action_mainFragment_to_personalFragment,bundle)
     }
