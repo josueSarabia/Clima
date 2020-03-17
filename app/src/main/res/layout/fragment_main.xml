@@ -14,7 +14,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginBottom="8dp"
-        android:text="Clima colombia"
+        android:text="Weather colombia"
         android:textColor="#3F51B5"
         android:textSize="30sp"
         android:textStyle="bold"

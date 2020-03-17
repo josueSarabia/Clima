@@ -68,8 +68,8 @@ class RandomUser {
                     val weatherObject = cityObject.getJSONArray("weather").getJSONObject(0)
                     val descriptionWeatherObject = weatherObject.getString("description")
                     val main = cityObject.getJSONObject("main")
-                    val minTemp = main.getString("temp_min")
-                    val maxTemp = main.getString("temp_max")
+                    val minTemp = main.getString("temp_min")+"ºC"
+                    val maxTemp = main.getString("temp_max")+"ºC"
                     val city = RandomUser()
                     city.name = name
                     city.Description = descriptionWeatherObject
